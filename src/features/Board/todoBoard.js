@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import '../todo.css';
 import TodoForm from "./todoForm";
 import TodosList from  "./todosList"
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 import {addTask} from "./todoSlice";
 import serverApis from '../../ServerApis/serverApis';
 

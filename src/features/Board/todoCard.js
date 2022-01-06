@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import '../todo.css';
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 import {removeTask} from "./todoSlice";
 import serverApis from "../../ServerApis/serverApis";
 
