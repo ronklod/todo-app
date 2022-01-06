@@ -11,11 +11,26 @@ const TodosList = ()=> {
 
     return (
         <div className={'todo_list'}>
-            {
-                todoArr.map((todo) => {
-                    return <TodoCard title={todo.title} content={todo.content} cardId={todo.id} dueDate={todo.dueDate}/>
-                })
-            }
+            <div className={'todo_list_uncompleted_container'}>
+                <div className={'todo_list_title'}>Open Tasks</div>
+                <div className={'todo_list_uncompleted'}>
+                    {
+                        todoArr.map((todo) => {
+                            return !todo.isCompleted &&  <TodoCard title={todo.title} content={todo.content} cardId={todo.id} dueDate={todo.dueDate} visible={true}/>
+                        })
+                    }
+                </div>
+            </div>
+            <div className={'todo_list_completed_container'}>
+                <div className={'todo_list_title'}>Completed Tasks</div>
+                <div className={'todo_list_completed'}>
+                    {
+                        todoArr.map((todo) => {
+                            return todo.isCompleted &&  <TodoCard title={todo.title} content={todo.content} cardId={todo.id} dueDate={todo.dueDate} visible={false}/>
+                        })
+                    }
+                </div>
+            </div>
         </div>
     )
 }

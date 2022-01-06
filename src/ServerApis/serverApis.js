@@ -31,6 +31,17 @@ const post = (route, data,  onSuccess, onFail) => {
     });
 }
 
+const put = (route, data,  onSuccess, onFail) => {
+    const url = SERVER_ADDRESS + route + data;
+    axios.put(url).then(result =>{
+        console.log(result);
+        onSuccess(result);
+    }).catch(function (error) {
+        console.log(error);
+        onFail(error);
+    });
+}
+
 const del = (route, data, onSuccess, onFail) =>{
     const url = SERVER_ADDRESS + route + data;
     axios.delete(url).then(result=>{
@@ -43,4 +54,4 @@ const del = (route, data, onSuccess, onFail) =>{
 }
 
 
-export default {get, post, del};
+export default {get, post,put, del};

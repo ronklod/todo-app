@@ -11,7 +11,7 @@ const  TodoBoard = ()=>{
 
     const loadTasks = (tasks)=>{
         for(let task of tasks.data){
-            dispatch(addTask({'title': task.title, 'content': task.content, 'id': task.id, dueDate: task.dueDate}));
+            dispatch(addTask({'title': task.title, 'content': task.content, 'id': task.id, dueDate: task.dueDate, 'isCompleted': task.isCompleted}));
         }
     }
 

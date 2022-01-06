@@ -15,7 +15,6 @@
 
 .left_panel{
     width: 400px;
-    background-color:white;
     flex: 1;
     background-color: #F8F8F8;
     margin-left: 5px;
@@ -23,6 +22,7 @@
     border-color: lightgray;
     border-width: 1px;
     border-style:solid;
+    height: 91.2vh;
 }
 
 .right_panel{
@@ -31,10 +31,10 @@
     flex: 2;
     margin-left: 20px;
     margin-right: 10px;
-    box-shadow: 5px 5px 5px lightgray;
-    border-color: lightgray;
-    border-width: 1px;
-    border-style:solid;
+    /*box-shadow: 5px 5px 5px lightgray;*/
+    /*border-color: lightgray;*/
+    /*border-width: 1px;*/
+    /*border-style:solid;*/
 }
 
 .left_panel_content{
@@ -51,10 +51,44 @@
 }
 
 .todo_list{
+}
+
+.todo_list_title{
+    padding-left: 5px;
+    font: 16px;
+    color: #1d39c4;
+    font-weight: bold;
+}
+
+.todo_list_uncompleted{
     display: flex;
-    -webkit-flex-wrap: wrap;
+    height: 42vh;
+    width:100%;
+    overflow: hidden;
     flex-wrap: wrap;
-    margin-top: 10px;
+}
+
+.todo_list_uncompleted_container{
+    box-shadow: 5px 5px 5px lightgray;
+    border-color: lightgray;
+    border-width: 1px;
+    border-style:solid;
+}
+
+.todo_list_completed{
+    display: flex;
+    height: 42vh;
+    width:100%;
+    overflow: hidden;
+    flex-wrap: wrap;
+}
+
+.todo_list_completed_container{
+    margin-top: 20px;
+    box-shadow: 5px 5px 5px lightgray;
+    border-color: lightgray;
+    border-width: 1px;
+    border-style:solid;
 }
 
 .todo_card{

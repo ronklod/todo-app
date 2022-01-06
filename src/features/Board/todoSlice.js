@@ -34,10 +34,22 @@ export const todoSlice = createSlice({
             }
             state.todos.splice(index_delete,1);
         },
+
+        updateTask:(state, action) => {
+            let indexToUpdate = 0;
+            for(let i=0;i<state.todos.length; i++){
+                if(state.todos[i].id === action.payload) {
+                    indexToUpdate = i;
+                    break;
+                }
+            }
+
+            state.todos[indexToUpdate].isCompleted = true;
+        }
     }
 });
 
-export const { addTask, removeTask } = todoSlice.actions;
+export const { addTask, removeTask, updateTask } = todoSlice.actions;
 
 // The function below is called a selector and allows us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of

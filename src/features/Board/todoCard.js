@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '../todo.css';
 import {useDispatch} from "react-redux";
-import {removeTask} from "./todoSlice";
+import {removeTask,updateTask} from "./todoSlice";
 import serverApis from "../../ServerApis/serverApis";
 import { Modal } from 'antd';
 import { ExclamationCircleOutlined } from '@ant-design/icons';
@@ -35,6 +35,14 @@ const  TodoCard =(props)=>{
         });
     }
 
+    const doneClick = ()=>{
+        serverApis.put('/todo/',props.cardId, (result)=>{
+            dispatch(updateTask(props.cardId));
+        }, (err)=>{
+
+        })
+    }
+
     return (
         <div className={'todo_card'}>
             <div>
@@ -43,6 +51,10 @@ const  TodoCard =(props)=>{
                 <div>{props.dueDate}</div>
             </div>
             <span className={'card_close_btn'} onClick={showDeleteConfirm}>X</span>
+            {props.visible ?
+                <input type="button" onClick={doneClick} value="Done" />
+                : null
+            }
         </div>
     )
 }
