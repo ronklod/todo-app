@@ -3,6 +3,10 @@ import '../todo.css';
 import {useDispatch} from "react-redux";
 import {removeTask} from "./todoSlice";
 import serverApis from "../../ServerApis/serverApis";
+import { Modal } from 'antd';
+import { ExclamationCircleOutlined } from '@ant-design/icons';
+
+const { confirm } = Modal;
 
 const  TodoCard =(props)=>{
 
@@ -14,15 +18,31 @@ const  TodoCard =(props)=>{
         }, err => {alert(err.message)});
     }
 
+    function showDeleteConfirm() {
+        confirm({
+            title: 'Are you sure delete this task?',
+            icon: <ExclamationCircleOutlined />,
+            content: '',
+            okText: 'Yes',
+            okType: 'danger',
+            cancelText: 'No',
+            onOk() {
+                deleteCard();
+            },
+            onCancel() {
+                return false;
+            },
+        });
+    }
+
     return (
         <div className={'todo_card'}>
             <div>
                 <div className={'card_title'}>{props.title}</div>
                 <div className={'card_content'}>{props.content}</div>
                 <div>{props.dueDate}</div>
-                {/*<span>{datetime}</span>*/}
             </div>
-            <span className={'card_close_btn'} onClick={deleteCard}>X</span>
+            <span className={'card_close_btn'} onClick={showDeleteConfirm}>X</span>
         </div>
     )
 }
