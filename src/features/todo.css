@@ -1,0 +1,98 @@
+.todo_header{
+    width: 100vw;
+    height: 5vh;
+    background-color: white;
+    text-align: center;
+}
+.header_text{
+    color:#1d39c4;
+    font-size: 30px;
+}
+.flex_container{
+    display: flex;
+    height:95vh;
+}
+
+.left_panel{
+    width: 400px;
+    background-color:white;
+    flex: 1;
+    background-color: #F8F8F8;
+    margin-left: 5px;
+    box-shadow: 5px 5px 5px lightgray;
+    border-color: lightgray;
+    border-width: 1px;
+    border-style:solid;
+}
+
+.right_panel{
+    width: 400px;
+    background-color:#F8F8F8;
+    flex: 2;
+    margin-left: 20px;
+    margin-right: 10px;
+    box-shadow: 5px 5px 5px lightgray;
+    border-color: lightgray;
+    border-width: 1px;
+    border-style:solid;
+}
+
+.left_panel_content{
+    margin: auto;
+    width: 95%;
+    padding: 10px;
+    box-shadow: 5px 5px 5px lightgray;
+    border-color: lightgray;
+    border-width: 1px;
+    border-style:solid;
+    border-radius: 5px;
+    background-color: white;
+    margin-top: 10px;
+}
+
+.todo_list{
+    display: flex;
+    -webkit-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
+
+.todo_card{
+    background-color: white;
+    color: lightskyblue;
+    width: 300px;
+    height: 100px;
+    margin-left: 5px;
+    margin-top: 3px;
+    padding-left: 4px;
+    padding-top: 2px;
+    position: relative;
+    box-shadow: 5px 5px 5px lightgray;
+    border-color: lightgray;
+    border-width: 1px;
+    border-style:solid;
+    border-radius: 5px;
+}
+
+.card_title {
+    color: #1d39c4;
+    font-weight: bold;
+}
+
+.card_content{
+    color: black;
+    font-size: 16px;
+    width: 100%;
+}
+
+.card_close_btn{
+    position: absolute;
+    top: 2px;
+    right: 5px;
+    cursor: pointer;
+    width: 15px;
+    text-align: center;
+    color: black;
+    font-weight: bold;
+}
+
