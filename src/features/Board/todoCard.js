@@ -3,8 +3,10 @@ import '../todo.css';
 import {useDispatch} from "react-redux";
 import {removeTask,updateTask} from "./todoSlice";
 import serverApis from "../../ServerApis/serverApis";
-import { Modal } from 'antd';
+import { Modal, Tooltip } from 'antd';
 import { ExclamationCircleOutlined } from '@ant-design/icons';
+import checkImg from '../../images/check.svg';
+import closeImg from '../../images/close.svg';
 
 const { confirm } = Modal;
 
@@ -46,15 +48,19 @@ const  TodoCard =(props)=>{
     return (
         <div className={'todo_card'}>
             <div>
-                <div className={'card_title'}>{props.title}</div>
-                <div className={'card_content'}>{props.content}</div>
-                <div>{props.dueDate}</div>
+                <div className={props.isCompleted ? 'card_title card_title_completed' : 'card_title'}>{props.title}</div>
+                <div className={ props.isCompleted ? 'card_content card_content_completed' : 'card_content'}>{props.content}</div>
+                <div className={'card_duedate'}>{props.dueDate}</div>
+                {props.visible ?
+                    <Tooltip title="Set task as completed">
+                        <img src={checkImg} className={'btn_task_completed'}  onClick={doneClick} />
+                    </Tooltip>
+                    : null
+                }
             </div>
-            <span className={'card_close_btn'} onClick={showDeleteConfirm}>X</span>
-            {props.visible ?
-                <input type="button" onClick={doneClick} value="Done" />
-                : null
-            }
+            <Tooltip title="Delete task">
+                <img src={closeImg} className={'card_close_btn'} onClick={showDeleteConfirm} />
+            </Tooltip>
         </div>
     )
 }

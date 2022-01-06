@@ -73,11 +73,11 @@ const  TodoForm = ()=> {
     const onFinish = (values) => {
         saveTask();
         form.resetFields();
-
     };
 
     return (
         <div className={'left_panel_content'}>
+           <div className={'add_task_title'}>Add new Task</div>
             <Form {...layout} form={form} name="nest-messages"  onFinish={onFinish}  validateMessages={validateMessages}>
                 <Form.Item label="Title" name={['todo', 'title']} rules={[{ required: true }]}>
                     <Input value={title} onChange={handleTitleChange} />
@@ -96,30 +96,6 @@ const  TodoForm = ()=> {
                 </Form.Item>
             </Form>
         </div>
-
-
-        // <div>
-        //     <ul>
-        //         <li>
-        //             <label>Title</label>
-        //             <input type='text' id='txtTitle' value={title} onChange={handleTitleChange}/>
-        //         </li>
-        //         <li>
-        //             <label>Content</label>
-        //             <input type='text' id='txtContnet' value={content} onChange={handleContentChange} />
-        //         </li>
-        //         <li>
-        //             <label>Alert required?</label>
-        //             <input type='checkbox' checked={alertRequired}  onClick={isAlertRequired} />
-        //         </li>
-        //         <li>
-        //             <label>Time</label>
-        //             <input type='text' id='txtTime' />
-        //         </li>
-        //
-        //     </ul>
-        //     <input type='button' value='Add Task' onClick={saveTask} />
-        // </div>
     )
 }
 
