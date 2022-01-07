@@ -6,7 +6,7 @@
 }
 .header_text{
     color:grey;
-    font-size: 32px;
+    font-size: 2.4em;
 }
 .flex_container{
     display: flex;
@@ -22,7 +22,7 @@
     border-color: lightgray;
     border-width: 1px;
     border-style:solid;
-    height: 91.6vh;
+    height: 92vh;
 }
 
 .right_panel{
@@ -48,8 +48,8 @@
 
 .add_task_title{
     text-align: center;
-    font: 16px;
-    color: #1d39c4;
+    font-size: 1.2em;
+    color: gray;
     font-weight: bold;
     margin-bottom: 5px;
 }
@@ -59,7 +59,7 @@
 
 .todo_list_title{
     padding-left: 10px;
-    font: 20px;
+    font-size: 1.2em;
     color: gray;
     font-weight: bold;
 }
@@ -115,12 +115,12 @@
 .card_title {
     color: grey;
     font-weight: bold;
-    font-size: 16px;
+    font-size: 1.2em;
 }
 
 .card_content{
     color: black;
-    font-size: 16px;
+    font-size: 1.1em;
     width: 100%;
     overflow-y: auto;
     height: 105px;
