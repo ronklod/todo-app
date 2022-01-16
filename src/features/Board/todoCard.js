@@ -23,7 +23,7 @@ const  TodoCard =(props) => {
 
     const showDeleteConfirm = () => {
         confirm({
-            title: 'Are you sure delete this task?',
+            title: 'Are you sure to delete this task?',
             icon: <ExclamationCircleOutlined />,
             content: '',
             okText: 'Yes',
