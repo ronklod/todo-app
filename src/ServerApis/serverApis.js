@@ -2,7 +2,7 @@ import axios from "axios";
 import {addTask} from "../features/Board/todoSlice";
 
 const SERVER_BASE_URL = "http://localhost";
-const SERVER_PORT = "3001";
+const SERVER_PORT = window.location.port;//"3001";
 const SERVER_ADDRESS = SERVER_BASE_URL + ":" + SERVER_PORT;
 
 const get = (route, onSuccess, onFail) => {
