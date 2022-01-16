@@ -8,19 +8,20 @@ import { ExclamationCircleOutlined } from '@ant-design/icons';
 import checkImg from '../../images/check.svg';
 import closeImg from '../../images/close.svg';
 
+
 const { confirm } = Modal;
 
-const  TodoCard =(props)=>{
+const  TodoCard =(props) => {
 
     const dispatch = useDispatch();
 
-    const deleteCard = ()=>{
+    const deleteCard = () => {
         serverApis.del('/todo/',props.cardId,(result) => {
             dispatch(removeTask(props.cardId))
         }, err => {alert(err.message)});
     }
 
-    function showDeleteConfirm() {
+    const showDeleteConfirm = () => {
         confirm({
             title: 'Are you sure delete this task?',
             icon: <ExclamationCircleOutlined />,
@@ -37,7 +38,7 @@ const  TodoCard =(props)=>{
         });
     }
 
-    const doneClick = ()=>{
+    const doneClick = () => {
         serverApis.put('/todo/',props.cardId, (result)=>{
             dispatch(updateTask(props.cardId));
         }, (err)=>{
@@ -45,11 +46,23 @@ const  TodoCard =(props)=>{
         })
     }
 
+    const getAttachmentSrc = () =>{
+        if(props.attachment_id != null) {
+            return <img src={serverApis.getServerAddress() + "/todo/attachment/" + props.attachment_id} className={'card_attachmet'} />;
+        }
+        else {
+            return <></>;
+        }
+    }
+
     return (
         <div className={'todo_card'}>
             <div>
                 <div className={props.isCompleted ? 'card_title card_title_completed' : 'card_title'}>{props.title}</div>
                 <div className={ props.isCompleted ? 'card_content card_content_completed' : 'card_content'}>{props.content}</div>
+                <div>
+                    {getAttachmentSrc()}
+                </div>
                 <div className={'card_duedate'}>{props.dueDate}</div>
                 {props.visible ?
                     <Tooltip title="Set task as completed">

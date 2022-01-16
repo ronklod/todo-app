@@ -16,7 +16,12 @@ const TodosList = ()=> {
                 <div className={'todo_list_uncompleted'}>
                     {
                         todoArr.map((todo) => {
-                            return !todo.isCompleted &&  <TodoCard title={todo.title} content={todo.content} cardId={todo.id} dueDate={todo.dueDate} visible={true}/>
+                            return !todo.isCompleted &&  <TodoCard title={todo.title}
+                                                                   content={todo.content}
+                                                                   cardId={todo.id}
+                                                                   dueDate={todo.dueDate}
+                                                                   attachment_id={todo.attachment_id}
+                                                                   visible={true}/>
                         })
                     }
                 </div>
@@ -26,7 +31,13 @@ const TodosList = ()=> {
                 <div className={'todo_list_completed'}>
                     {
                         todoArr.map((todo) => {
-                            return todo.isCompleted &&  <TodoCard title={todo.title} isCompleted={todo.isCompleted} content={todo.content} cardId={todo.id} dueDate={todo.dueDate} visible={false}/>
+                            return todo.isCompleted &&  <TodoCard title={todo.title}
+                                                                  isCompleted={todo.isCompleted}
+                                                                  content={todo.content}
+                                                                  cardId={todo.id}
+                                                                  dueDate={todo.dueDate}
+                                                                  attachment_id={todo.attachment_id}
+                                                                  visible={false}/>
                         })
                     }
                 </div>

@@ -4,6 +4,7 @@ import {addTask, selectTodo} from "./todoSlice";
 import '../todo.css';
 import { Form, Input, DatePicker, Button } from 'antd';
 import serverApis from "../../ServerApis/serverApis";
+import axios from "axios";
 
 
 const  TodoForm = ()=> {
@@ -15,6 +16,7 @@ const  TodoForm = ()=> {
     const [content, setContent] = useState('');
     const [alertRequired, setAlert] = useState(false);
     const [dueDate, setDuedate] = useState('');
+    const [attachment, setAttachment] = useState(null);
 
     //antd from hook
     const [form] = Form.useForm();
@@ -36,22 +38,32 @@ const  TodoForm = ()=> {
         setDuedate(date);
     }
 
+    const handleFileUpload = (e) => {
+        setAttachment(e.target.files[0]);
+    }
+
     const saveTask = () =>{
         let task = {'title': title, 'content': content, 'dueDate': dueDate};
+
         saveTaskOnServer(task);
         //redux state update
         //not required while using antd forms, since i'm clearing the forms after submit and i'm not allowing adding empty strings, the input fields are set to reuiqred
         setTitle("");
         setContent("");
+        setAttachment(null);
     }
 
     const saveTaskOnServer = (task) =>{
-        serverApis.post('/todo/',{
-                 title: task.title,
-                 content: task.content,
-                 isCompleted: false,
-                 dueDate:task.dueDate
-             }, (taskData)=> {dispatch(addTask(taskData.data))}, (err)=>{alert(err.message)});
+        let formData = new FormData();
+        formData.append("file", attachment);
+        formData.append("task", JSON.stringify(task));
+
+        const headers = {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+            }}
+
+        serverApis.post('/todo/',formData, headers , (taskData)=> {dispatch(addTask(taskData.data))}, (err)=>{alert(err.message)});
     }
 
     const layout = {
@@ -88,6 +100,9 @@ const  TodoForm = ()=> {
                 <Form.Item label="Due Date">
                     <DatePicker onChange={handleDueDateChange} onOk={handleDueDateChange} showTime={{ format: 'HH:mm' }}
                                 format="YYYY-MM-DD HH:mm"/>
+                </Form.Item>
+                <Form.Item label="attachment">
+                    <input type="file" name="attachment" onChange={handleFileUpload}/>
                 </Form.Item>
                 <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 10 }}>
                     <Button type="primary" htmlType="submit"  >

@@ -20,9 +20,9 @@ const get = (route, onSuccess, onFail) => {
     });
 }
 
-const post = (route, data,  onSuccess, onFail) => {
+const post = (route, data, headers, onSuccess, onFail) => {
     const url = SERVER_ADDRESS + route;
-    axios.post(url, data).then(result =>{
+    axios.post(url, data, headers).then(result =>{
         console.log(result);
         onSuccess(result);
     }).catch(function (error) {
@@ -53,5 +53,9 @@ const del = (route, data, onSuccess, onFail) =>{
 
 }
 
+const getServerAddress = () => {
+    return SERVER_ADDRESS;
+}
 
-export default {get, post,put, del};
+
+export default {get, post,put, del, getServerAddress};

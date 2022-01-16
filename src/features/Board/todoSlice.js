@@ -45,7 +45,7 @@ export const todoSlice = createSlice({
             }
 
             state.todos[indexToUpdate].isCompleted = true;
-        }
+        },
     }
 });
 
