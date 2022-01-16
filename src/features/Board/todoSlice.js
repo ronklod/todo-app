@@ -4,6 +4,8 @@ const initialState = {
     todos: [],
     lastId: 0, //currently not use, however i left in the state, might be for future use
     status: 'idle', //same as lastId
+    showLargeCardModal: false,
+    selectedCard: null
 };
 
 export const todoSlice = createSlice({
@@ -46,15 +48,34 @@ export const todoSlice = createSlice({
 
             state.todos[indexToUpdate].isCompleted = true;
         },
+
+        isLargeCardVisible: (state, action) => {
+            state.showLargeCardModal = action.payload;
+        },
+
+        setLargeCard: (state, action) => {
+            let indexToUpdate = 0;
+            for(let i=0;i<state.todos.length; i++){
+                if(state.todos[i].id === action.payload) {
+                    indexToUpdate = i;
+                    break;
+                }
+            }
+
+            state.selectedCard = state.todos[indexToUpdate];
+        }
+
     }
 });
 
-export const { addTask, removeTask, updateTask } = todoSlice.actions;
+export const { addTask, removeTask, updateTask, isLargeCardVisible, setLargeCard } = todoSlice.actions;
 
 // The function below is called a selector and allows us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of
 // in the slice file. For example: `useSelector((state: RootState) => state.counter.value)`
 export const selectTodo = (state) => state.todo.todos;
+export const selectLargeCardModalVisibleState = (state) => state.todo.showLargeCardModal;
+export const selectLargeCard = (state) => state.todo.selectedCard;
 
 // We can also write thunks by hand, which may contain both sync and async logic.
 // Here's an example of conditionally dispatching actions based on current state.

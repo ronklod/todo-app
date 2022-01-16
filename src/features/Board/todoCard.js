@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import '../todo.css';
 import {useDispatch} from "react-redux";
-import {removeTask,updateTask} from "./todoSlice";
+import {removeTask,updateTask, isLargeCardVisible, setLargeCard} from "./todoSlice";
 import serverApis from "../../ServerApis/serverApis";
-import { Modal, Tooltip } from 'antd';
+import { Modal, Tooltip,Popover } from 'antd';
 import { ExclamationCircleOutlined } from '@ant-design/icons';
 import checkImg from '../../images/check.svg';
 import closeImg from '../../images/close.svg';
-
+import resizeImg from '../../images/resize.png';
 
 const { confirm } = Modal;
 
@@ -46,19 +46,37 @@ const  TodoCard =(props) => {
         })
     }
 
+    const getImage = (className) => {
+        return <img src={serverApis.getServerAddress() + "/todo/attachment/" + props.attachment_id} className={className} />;
+    }
+
     const getAttachmentSrc = () =>{
         if(props.attachment_id != null) {
-            return <img src={serverApis.getServerAddress() + "/todo/attachment/" + props.attachment_id} className={'card_attachmet'} />;
+            return (<div>
+                        <Popover content={getImage('card_attachmet_popover')} >
+                            {getImage('card_attachmet')}
+                        </Popover>
+                    </div>);
+
         }
         else {
             return <></>;
         }
     }
 
+    const showLargeCardModal = ()=>{
+        dispatch(isLargeCardVisible(true));
+        dispatch(setLargeCard(props.cardId));
+    }
+
     return (
         <div className={'todo_card'}>
             <div>
-                <div className={props.isCompleted ? 'card_title card_title_completed' : 'card_title'}>{props.title}</div>
+                <div className={props.isCompleted ? 'card_title card_title_completed' : 'card_title'}>
+                    <Tooltip title={props.title}>
+                        {props.title}
+                    </Tooltip>
+                </div>
                 <div className={ props.isCompleted ? 'card_content card_content_completed' : 'card_content'}>{props.content}</div>
                 <div>
                     {getAttachmentSrc()}
@@ -71,6 +89,9 @@ const  TodoCard =(props) => {
                     : null
                 }
             </div>
+            <Tooltip title="Open in bigger window">
+                <img src={resizeImg} className={'card_enlarge_btn'} onClick={showLargeCardModal} />
+            </Tooltip>
             <Tooltip title="Delete task">
                 <img src={closeImg} className={'card_close_btn'} onClick={showDeleteConfirm} />
             </Tooltip>

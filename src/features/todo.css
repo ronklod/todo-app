@@ -68,7 +68,7 @@
     display: flex;
     height: 42vh;
     width:100%;
-    overflow: hidden;
+    overflow-y:auto;
     flex-wrap: wrap;
 }
 
@@ -83,7 +83,7 @@
     display: flex;
     height: 42vh;
     width:100%;
-    overflow: hidden;
+    overflow-y:auto;
     flex-wrap: wrap;
 }
 
@@ -116,6 +116,10 @@
     color: grey;
     font-weight: bold;
     font-size: 1.2em;
+    white-space: nowrap;
+    width: 80%;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .card_content{
@@ -123,15 +127,23 @@
     font-size: 1.1em;
     width: 100%;
     overflow-y: auto;
-    /*height: 105px;*/
-    height: 60px;
-    background-color: lightgreen;
+    height: 50px;
 }
 
-.card_attachmet{
-    width: 40px;
-    height: 40px;
-    background-color: pink;
+.card_attachmet {
+    width: 60px;
+    height: 60px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.card_attachmet_popover{
+    width: 300px;
+    height: 300px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .card_content_completed{
@@ -154,6 +166,18 @@
     height: 16px;
 }
 
+.card_enlarge_btn{
+    position: absolute;
+    top: 4px;
+    right: 30px;
+    cursor: pointer;
+    text-align: center;
+    color: black;
+    font-weight: bold;
+    width: 16px;
+    height: 16px;
+}
+
 .btn_task_completed{
     position: absolute;
     bottom: 5px;
@@ -166,5 +190,28 @@
 
 .card_duedate{
     color:grey;
+    position: absolute;
+    bottom: 1px;
+    left: 5px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.large_card_attachment{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    max-width:600px;
+    max-height:600px;
+    width: auto;
+    height: auto;
+}
+
+.large_card_attachment_text{
+    vertical-align: top;
+}
+
+.large_card_img{
+
 }
 

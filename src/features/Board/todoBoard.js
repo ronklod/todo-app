@@ -6,7 +6,8 @@ import {useDispatch} from "react-redux";
 import {addTask} from "./todoSlice";
 import serverApis from '../../ServerApis/serverApis';
 
-const  TodoBoard = ()=>{
+const  TodoBoard = () => {
+
     const dispatch = useDispatch();
 
     const loadTasks = (tasks)=>{
