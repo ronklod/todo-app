@@ -63,7 +63,7 @@ const  TodoForm = ()=> {
                 'Content-Type': 'multipart/form-data',
             }}
 
-        serverApis.post('/todo/',formData, headers , (taskData)=> {dispatch(addTask(taskData.data))}, (err)=>{alert(err.message)});
+        serverApis.post('/todo/',formData, headers , (taskData)=> {dispatch(addTask(taskData.data)); resetForm();}, (err)=>{alert(err.message)});
     }
 
     const layout = {
@@ -87,6 +87,11 @@ const  TodoForm = ()=> {
         form.resetFields();
     };
 
+    const resetForm = () => {
+        form.resetFields();
+        document.getElementById("fileUpload").value = "";
+    }
+
     return (
         <div className={'left_panel_content'}>
            <div className={'add_task_title'}>Add new Task</div>
@@ -101,12 +106,15 @@ const  TodoForm = ()=> {
                     <DatePicker onChange={handleDueDateChange} onOk={handleDueDateChange} showTime={{ format: 'HH:mm' }}
                                 format="YYYY-MM-DD HH:mm"/>
                 </Form.Item>
-                <Form.Item label="attachment">
-                    <input type="file" name="attachment" onChange={handleFileUpload}/>
+                <Form.Item label="Attachment">
+                    <input type="file" name="attachment" onChange={handleFileUpload} id="fileUpload"/>
                 </Form.Item>
-                <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 10 }}>
+                <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>
                     <Button type="primary" htmlType="submit"  >
                         Save Task
+                    </Button>
+                    <Button onClick={resetForm} className="resetButton"  >
+                        Reset
                     </Button>
                 </Form.Item>
             </Form>
