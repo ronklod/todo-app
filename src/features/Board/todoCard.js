@@ -8,6 +8,7 @@ import { ExclamationCircleOutlined } from '@ant-design/icons';
 import checkImg from '../../images/check.svg';
 import closeImg from '../../images/close.svg';
 import resizeImg from '../../images/resize.png';
+import utils from "../../utils/utils"
 
 const { confirm } = Modal;
 
@@ -69,8 +70,19 @@ const  TodoCard =(props) => {
         dispatch(setLargeCard(props.cardId));
     }
 
+    const card_class = () => {
+        switch (props.category_id) {
+            case utils.CATEGORIES.NONE:
+                return "card-category-none";
+            case utils.CATEGORIES.RED:
+                return "card-category-red";
+            case utils.CATEGORIES.BLUE:
+                return "card-category-blue";
+        }
+    }
+
     return (
-        <div className={'todo_card'}>
+        <div className={'todo_card ' + card_class()}>
             <div>
                 <div className={props.isCompleted ? 'card_title card_title_completed' : 'card_title'}>
                     <Tooltip title={props.title}>
@@ -81,7 +93,7 @@ const  TodoCard =(props) => {
                 <div>
                     {getAttachmentSrc()}
                 </div>
-                <div className={'card_duedate'}>{props.dueDate}</div>
+                <div className={props.isCompleted ? 'card_duedate_completed' : 'card_duedate'}>{props.dueDate}</div>
                 {props.visible ?
                     <Tooltip title="Set task as completed">
                         <img src={checkImg} className={'btn_task_completed'}  onClick={doneClick} />

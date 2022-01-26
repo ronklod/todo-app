@@ -24,7 +24,8 @@ const TodosList = () => {
                                                                        cardId={todo.id}
                                                                        dueDate={todo.dueDate}
                                                                        attachment_id={todo.attachment_id}
-                                                                       visible={true}/>
+                                                                       visible={true}
+                                                                       category_id={todo.category_id}/>
                             })
                         }
                     </div>
@@ -40,7 +41,8 @@ const TodosList = () => {
                                                                       cardId={todo.id}
                                                                       dueDate={todo.dueDate}
                                                                       attachment_id={todo.attachment_id}
-                                                                      visible={false}/>
+                                                                      visible={false}
+                                                                      category_id={todo.category_id}  />
                             })
                         }
                     </div>

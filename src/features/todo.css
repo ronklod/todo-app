@@ -120,6 +120,7 @@
     width: 80%;
     overflow: hidden;
     text-overflow: ellipsis;
+    vertical-align: top;
 }
 
 .card_content{
@@ -155,6 +156,10 @@
 }
 
 .card_title_completed{
+    text-decoration-line: line-through;
+}
+
+.card_duedate_completed{
     text-decoration-line: line-through;
 }
 
@@ -201,6 +206,16 @@
     text-align: center;
 }
 
+.card_duedate_completed{
+    text-decoration-line: line-through;
+    color:grey;
+    position: absolute;
+    bottom: 1px;
+    left: 5px;
+    cursor: pointer;
+    text-align: center;
+}
+
 .large_card_attachment{
     display: block;
     margin-left: auto;
@@ -221,5 +236,68 @@
 
 .resetButton{
     margin-left: 20px;
+}
+
+.category-red{
+    margin-right: 15px;
+    background-color: #ff4d4f;
+}
+
+.category-blue{
+    margin-right: 15px;
+    background-color: #69c0ff;
+}
+
+.category-none{
+    background-color: transparent;
+}
+
+.card-category-red{
+    background-color: #ff4d4f;
+}
+
+.card-category-blue{
+    background-color: #69c0ff;
+}
+
+.card-category-none{
+    background-color: white;
+}
+
+.category-card-modal-red {
+    background-color: #ff4d4f;
+    width: 25px;
+    height: 25px;
+    display:inline-block;
+    border-color: black;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 50%;
+    margin-left: 5px;
+}
+
+.category-card-modal-blue {
+    width: 25px;
+    height: 25px;
+    background-color: #69c0ff;
+    display:inline-block;
+    border-color: black;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 50%;
+    margin-left: 5px;
+
+}
+
+.category-card-modal-none {
+    background-color: white;
+    width: 25px;
+    height: 25px;
+    display:inline-block;
+    border-color: black;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 50%;
+    margin-left: 5px;
 }
 

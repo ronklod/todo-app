@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {addTask, selectTodo} from "./todoSlice";
 import '../todo.css';
-import { Form, Input, DatePicker, Button } from 'antd';
+import { Form, Input, DatePicker, Button , Radio} from 'antd';
 import serverApis from "../../ServerApis/serverApis";
-import axios from "axios";
+import utils from "../../utils/utils";
 
 
 const  TodoForm = ()=> {
@@ -17,6 +17,9 @@ const  TodoForm = ()=> {
     const [alertRequired, setAlert] = useState(false);
     const [dueDate, setDuedate] = useState('');
     const [attachment, setAttachment] = useState(null);
+
+
+    const [category_id, setCategoryId] = useState(utils.CATEGORIES.NONE);
 
     //antd from hook
     const [form] = Form.useForm();
@@ -43,7 +46,7 @@ const  TodoForm = ()=> {
     }
 
     const saveTask = () =>{
-        let task = {'title': title, 'content': content, 'dueDate': dueDate};
+        let task = {'title': title, 'content': content, 'dueDate': dueDate, 'category_id': category_id};
 
         saveTaskOnServer(task);
         //redux state update
@@ -51,6 +54,7 @@ const  TodoForm = ()=> {
         setTitle("");
         setContent("");
         setAttachment(null);
+        setCategoryId(utils.CATEGORIES.NONE);
     }
 
     const saveTaskOnServer = (task) =>{
@@ -92,15 +96,26 @@ const  TodoForm = ()=> {
         document.getElementById("fileUpload").value = "";
     }
 
+    const handleCategoryType = (e) =>{
+        setCategoryId(e.target.value);
+    }
+
     return (
         <div className={'left_panel_content'}>
            <div className={'add_task_title'}>Add new Task</div>
             <Form {...layout} form={form} name="nest-messages"  onFinish={onFinish}  validateMessages={validateMessages}>
-                <Form.Item label="Title" name={['todo', 'title']} rules={[{ required: true }]}>
+                <Form.Item label="Title" rules={[{ required: true }]}>
                     <Input value={title} onChange={handleTitleChange} />
                 </Form.Item>
-                <Form.Item name={['todo', 'content']} label="Content" >
+                <Form.Item label="Content" >
                     <Input.TextArea  value={content} onChange={handleContentChange}   />
+                </Form.Item>
+                <Form.Item  label="Category" >
+                    <Radio.Group value={category_id} onChange={handleCategoryType}>
+                        <Radio.Button value={utils.CATEGORIES.RED} className="category-red" >Red</Radio.Button>
+                        <Radio.Button value={utils.CATEGORIES.BLUE} className="category-blue">Blue</Radio.Button>
+                        <Radio.Button value={utils.CATEGORIES.NONE} className="category-none">None</Radio.Button>
+                    </Radio.Group>
                 </Form.Item>
                 <Form.Item label="Due Date">
                     <DatePicker onChange={handleDueDateChange} onOk={handleDueDateChange} showTime={{ format: 'HH:mm' }}
@@ -111,7 +126,7 @@ const  TodoForm = ()=> {
                 </Form.Item>
                 <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>
                     <Button type="primary" htmlType="submit"  >
-                        Save Task
+                        Save
                     </Button>
                     <Button onClick={resetForm} className="resetButton"  >
                         Reset

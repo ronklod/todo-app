@@ -14,7 +14,8 @@ const  TodoBoard = () => {
         for(let task of tasks.data){
             dispatch(addTask({'title': task.title, 'content': task.content,
                                     'id': task.id, dueDate: task.dueDate,
-                                    'isCompleted': task.isCompleted, 'attachment_id': task.attachment_id}));
+                                    'isCompleted': task.isCompleted, 'attachment_id': task.attachment_id,
+                                    'category_id': task.category_id}));
         }
     }
 
