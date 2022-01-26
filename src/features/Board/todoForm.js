@@ -107,7 +107,7 @@ const  TodoForm = ()=> {
                                 format="YYYY-MM-DD HH:mm"/>
                 </Form.Item>
                 <Form.Item label="Attachment">
-                    <input type="file" name="attachment" onChange={handleFileUpload} id="fileUpload"/>
+                    <input type="file" name="attachment" onChange={handleFileUpload} id="fileUpload" accept="image/png, image/jpeg, image/jpg"/>
                 </Form.Item>
                 <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>
                     <Button type="primary" htmlType="submit"  >
